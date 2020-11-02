@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import LoginCard from "../component/LoginCard";
-import "../page/LoginPage.css";
 
 export class LoginPage extends Component {
   constructor(props) {
@@ -9,7 +8,7 @@ export class LoginPage extends Component {
   }
   render() {
     return (
-      <div className="decorate" align="center" style={{ paddingTop: 130 }}>
+      <div align="center" style={{ paddingTop: 130 }}>
         <LoginCard />
       </div>
     );
