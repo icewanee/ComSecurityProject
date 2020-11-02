@@ -66,14 +66,13 @@ export default class CommentForm extends Component {
   }*/
   render() {
     return (
-      <div className="bigCard" style={{ minHeight: "200px", height: "auto" }}>
+      <div className="bigCard" style={{ minHeight: "100px", height: "auto" }}>
         <form
          /* onSubmit={(event) => this.handleSubmit(event)}*/
-          style={{ marginLeft: 30 }}
+          style={{ marginLeft: 30}}
         >
           <div
             className="row textheader justify-content-center"
-            style={{ marginBottom: 10 }}
           >
             {this.state.comments.isCommented ? "Edit comment" : "Write comment"}
           </div>
@@ -83,8 +82,7 @@ export default class CommentForm extends Component {
                 className="textheader"
                 style={{
                   textAlign: "left",
-                  textIndent: "5px",
-                  marginBottom: "10px",
+                  textIndent: "5px"
                 }}
               >
                 Topic
@@ -118,7 +116,6 @@ export default class CommentForm extends Component {
                 style={{
                   textAlign: "left",
                   textIndent: "5px",
-                  marginBottom: "10px",
                 }}
               >
                 Detail
@@ -137,7 +134,7 @@ export default class CommentForm extends Component {
                   });
                 }}*/
                 placeholder="Comment"
-                style={{ width: "100%", height: "150px", resize: "none" }}
+                style={{ width: "100%", height: "75px", resize: "none" }}
                 maxLength="150"
               ></textarea>
             </div>

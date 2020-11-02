@@ -1,30 +1,63 @@
 import React, { Component } from 'react'
-import "./Comment.css"
+
 export default class Comment extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-             title: "hello",
-             comment: "I'm so sleepy I'm so sleepy I'm so sleepy I'm so sleepy I'm so sleepy",
-             date:"12/13/1989",
+            data: [
+                {
+                  comment: "www.hello.ewwr.com"
+                },
+                {
+                 comment: "www.hello.erer.com"
+                },
+                {
+                  comment: "www.hello.dfss.com"
+                },
+                {
+                 comment: "www.hello.oio.com"
+                },
+                {
+                 comment: "www.hello.dfdf.com"
+                },
+                {
+                 comment: "www.hello.iopo.com"
+                }
+              ]
         }
     }
     
     render() {
         return (
-            <div class="card mb-3 w-12 innerbox">
-            <div class="row no-gutters ">
-              <div class="col-md-12 ">
-                <div class="card-body">
-                  <center>
-                <a class="card-title title">{this.state.title}</a></center>
-                <p class="card-text">{this.state.comment}</p>
-                <p class="card-text"><small class="text-muted">Last updated {this.state.date}</small></p>
-                </div>
-              </div>
+            <div align="center">
+                <div className="Card">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <table class="table">
+                                <thead>
+                                <tr>
+                                <th scope="col" style={{ fontFamily: "Courier New" }}>comment</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                    {this.state.data.map(item => (
+                      <tr>
+                        <td style={{ fontFamily: "Courier New" }}>
+                        <div className="row">
+                          <div className="col-md-10">comment : {item.comment}</div>
+                          <div className="col-md-1"> <button>edit</button></div>
+                          <div className="col-md-1"> <button>delete</button></div>
+                        </div>
+                        </td>
+                      </tr>
+                      ))}
+                  </tbody>
+                </table>
+                </div>    
             </div>
-          </div>
+      </div>
+      </div>
         )
     }
 }
