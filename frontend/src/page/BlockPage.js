@@ -57,7 +57,8 @@ export default class BlockPage extends Component {
                     {this.state.data.map(item => (
                       <tr>
                         <td style={{ fontFamily: "Courier New" }}>
-                          <div>topic : {item.title}<br />detail : {item.detail}</div></td>
+                          <div>topic : {item.title}<br />detail : {item.detail}<br /><button>view comment</button></div>
+                        </td>
                       </tr>
                       ))}
                   </tbody>
