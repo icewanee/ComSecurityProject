@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BlockForm from '../component/BlockForm'
 
 export default class BlockPage extends Component {
     constructor(props) {
@@ -64,6 +65,11 @@ export default class BlockPage extends Component {
                   </tbody>
                 </table>
                 </div>    
+            </div>
+            <div className="row">
+            <div className="col-md-12">
+                  <BlockForm />
+              </div>            
             </div>
           <br />
       </div>

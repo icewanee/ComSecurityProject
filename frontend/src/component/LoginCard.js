@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../component/LoginCard.css";
+//import Util from "../apis/Util";
 import history from "../history";
 
 export class LoginCard extends Component {
@@ -29,7 +30,7 @@ export class LoginCard extends Component {
           style={{ width: 750, border: "thick solid black" }}
         >
           <br />
-          <form className="needs-validation" noValidate>
+          <form className="needs-validation" onSubmit={event => this.onClick(event)}>
             <div className="row">
               <div className="col-md-12 ">
                 <h2
@@ -86,7 +87,6 @@ export class LoginCard extends Component {
                   type="submit"
                   id="submit"
                   className="btn btn-outline-dark"
-                  onClick={() => this.onClick("/")}
                 >
                   Sign in
                 </button>
@@ -99,9 +99,22 @@ export class LoginCard extends Component {
       </div>
     );
   }
-  /*onClick = async (page) => {
-    console.log(this.state);
-    history.push(page);
+  /*onClick = async event => {
+    event.preventDefault();
+    let username = this.state.userName;
+    let password = this.state.password;
+    let data = await Util.login(username, password);
+    // await console.log(data);
+    if (data.errmsg) {
+      window.alert(data.errmsg);
+      this.setState({ password: "" });
+    } else {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      console.log(data);
+      history.push("/home");
+      window.location.reload();
+    }
   };*/
 }
 

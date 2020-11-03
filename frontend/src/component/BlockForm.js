@@ -2,16 +2,14 @@ import React, { Component } from "react";
 //import Rating from "@material-ui/lab/Rating";
 //import Util from "../apis/Util";
 
-export default class CommentForm extends Component {
+export default class BlockForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       comments: {
-        _id: "",
         topic: "",
-        text: "",
-        isCommented: false,
+        text: ""
       },
     };
    /* this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
@@ -71,6 +69,44 @@ export default class CommentForm extends Component {
          /* onSubmit={(event) => this.handleSubmit(event)}*/
           style={{ marginLeft: 30}}
         >
+          <div
+            className="row textheader justify-content-center"
+          >
+            Create new topic
+          </div>
+          <div className="row" style={{ marginBottom: 5 }}>
+            <div className="col-md-9">
+              <div
+                className="textheader"
+                style={{
+                  textAlign: "left",
+                  textIndent: "5px"
+                }}
+              >
+                Topic
+              </div>
+              <textarea
+                type="text"
+                className="inbox"
+                required="required"
+                value={this.state.comments.topic}
+               /* onChange={(event) => {
+                  const topic = event.target.value;
+                  this.setState((prevState) => {
+                    let comments = Object.assign({}, prevState.comments);
+                    comments.topic = topic;
+                    return { comments };
+                  });
+                }}*/
+                placeholder="Title"
+                style={{ width: "100%", height: "30px", resize: "none" }}
+                maxLength="50"
+              ></textarea>
+            </div>
+            <div className="col-md-3">
+              
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-9">
               <div
@@ -80,7 +116,7 @@ export default class CommentForm extends Component {
                   textIndent: "5px",
                 }}
               >
-                Create new comment
+                Detail
               </div>
               <textarea
                 type="text"
@@ -105,7 +141,6 @@ export default class CommentForm extends Component {
               align="center"
               style={{ paddingTop: "15px" }}
             >
-              <br />
                 <button
                   className="button-white"
                   style={{ width: 100 }}
@@ -113,7 +148,7 @@ export default class CommentForm extends Component {
                     this.handleSubmitCreate(event);
                   }}*/
                 >
-                  Comment
+                  submit
                 </button>
             </div>
           </div>
