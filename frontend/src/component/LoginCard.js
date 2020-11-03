@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../component/LoginCard.css";
-//import Util from "../apis/Util";
-import history from "../history";
+// import Util from "../apis/Util";
+// import history from "../history";
 
 export class LoginCard extends Component {
   constructor(props) {
@@ -99,6 +99,31 @@ export class LoginCard extends Component {
       </div>
     );
   }
+
+  // onClickLogin = async (event) => {
+  //   event.preventDefault();
+  //   let userName = this.state.userName;
+  //   let password = this.state.password;
+  //   let data = await Util.login(userName, password);
+  //   // await console.log(data);
+  //   if (data.errmsg) {
+  //     window.alert(data.errmsg);
+  //     this.setState({ password: "" });
+  //   } else {
+  //     localStorage.setItem("token", data.token);
+  //     localStorage.setItem("user", JSON.stringify(data.user));
+  //     localStorage.setItem(
+  //       "role",
+  //       data.user.role === "user"
+  //         ? "user"
+  //         : "admin"
+  //     );
+      
+  //     console.log(data);
+  //     history.push("/home");
+  //     window.location.reload();
+  //   }
+  // };
   /*onClick = async event => {
     event.preventDefault();
     let username = this.state.userName;

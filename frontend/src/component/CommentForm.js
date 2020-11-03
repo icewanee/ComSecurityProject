@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import Rating from "@material-ui/lab/Rating";
 //import Util from "../apis/Util";
 
 export default class CommentForm extends Component {
@@ -9,8 +8,7 @@ export default class CommentForm extends Component {
     this.state = {
       comments: {
         _id: "",
-        topic: "",
-        text: "",
+        comment: "",
         isCommented: false,
       },
     };
@@ -30,32 +28,15 @@ export default class CommentForm extends Component {
       return;
     }
     let data = await Util.createComment(
-      this.props.detail._id,
       this.state.comments.topic,
       this.state.comments.text,
-      this.state.comments.rating
     );
     if (data.err) {
       alert(data.err);
     }
     window.location.reload();
   }
-  async handleSubmitEdit(event) {
-    event.preventDefault();
-    console.log(this.state.comments);
-    let data = await Util.editComment(
-      this.props.detail._id,
-      this.state.comments.topic,
-      this.state.comments.text,
-      this.state.comments.rating
-    );
-    if (data.err) {
-      alert(data.err);
-    } else {
-      alert("Your comment is edited.");
-    }
-    window.location.reload();
-  }
+ 
   handleChange(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
