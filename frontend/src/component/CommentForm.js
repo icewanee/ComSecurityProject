@@ -6,6 +6,9 @@ export default class CommentForm extends Component {
     super(props);
 
     this.state = {
+      topic:{
+        id: 1
+      },
       comments: {
         _id: "",
         comment: "",
@@ -28,7 +31,7 @@ export default class CommentForm extends Component {
       return;
     }
     let data = await Util.createComment(
-      this.state.comments.topic,
+      this.state.topic.,
       this.state.comments.text,
     );
     if (data.err) {

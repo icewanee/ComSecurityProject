@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Util from "../apis/Util";
-// "user" === localStorage.getItem(
-//   "role"
-// )
+
 export default class Comment extends Component {
     constructor(props) {
         super(props)
@@ -45,7 +43,6 @@ export default class Comment extends Component {
               ]
         }
         this.handleEdit = this.handleEdit.bind(this);
-          this.handleDelete = this.handleDelete.bind(this);
     }
     async handleEdit(event) {
       var detail = prompt("New comment", "");
@@ -66,20 +63,7 @@ export default class Comment extends Component {
       // }
       window.location.reload();
     }
-    async handleDelete(event) {
-      event.preventDefault();
-      console.log("delete");
-      // let data = await Util.deleteComment(
-      //   this.props.detail._id, //comment_id??
-      //   this.state.post_id,
-      // );
-      // if (data.err) {
-      //   alert(data.err);
-      // } else {
-      //   alert("Post is delete.");
-      // }
-      window.location.reload();
-    } 
+   
 
     render() {
         return (
@@ -105,9 +89,7 @@ export default class Comment extends Component {
                               <div className="col-sm-1"> <button onClick={(event) => {
                                 this.handleEdit(event);
                               }}>edit</button></div>
-                                <div className="col-sm-1"> <button onClick={(event) => {
-                                  this.handleDelete(event);
-                              }}>delete</button></div>
+                          
                             </div>
                             ):(
                               <div>
