@@ -1,72 +1,22 @@
 import React, { Component } from "react";
-//import Rating from "@material-ui/lab/Rating";
-//import Util from "../apis/Util";
+import Util from "../apis/Util";
+import history from "../history";
 
 export default class BlockForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      comments: {
         topic: "",
-        text: ""
-      },
+        detail: ""
     };
-   /* this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
-    this.handleSubmitCreate = this.handleSubmitCreate.bind(this);
-    this.handleChange = this.handleChange.bind(this);*/
-  }
+    }
 
- /* async handleSubmitCreate(event) {
-    event.preventDefault();
-    console.log(this.state.comments);
-    if (!this.state.comments.topic || !this.state.comments.text) {
-      alert("Please fill every field");
-      return;
-    } else if (!this.state.comments.rating) {
-      alert("Please input rating");
-      return;
-    }
-    let data = await Util.createComment(
-      this.props.detail._id,
-      this.state.comments.topic,
-      this.state.comments.text,
-      this.state.comments.rating
-    );
-    if (data.err) {
-      alert(data.err);
-    }
-    window.location.reload();
-  }
-  async handleSubmitEdit(event) {
-    event.preventDefault();
-    console.log(this.state.comments);
-    let data = await Util.editComment(
-      this.props.detail._id,
-      this.state.comments.topic,
-      this.state.comments.text,
-      this.state.comments.rating
-    );
-    if (data.err) {
-      alert(data.err);
-    } else {
-      alert("Your comment is edited.");
-    }
-    window.location.reload();
-  }
-  handleChange(event) {
-    const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value,
-    });
-  }*/
   render() {
     return (
       <div className="bigCard" style={{ minHeight: "100px", height: "auto" }}>
         <form
-         /* onSubmit={(event) => this.handleSubmit(event)}*/
+        /*onSubmit={event => this.onClick(event)}*/
           style={{ marginLeft: 30}}
         >
           <div
@@ -89,23 +39,16 @@ export default class BlockForm extends Component {
                 type="text"
                 className="inbox"
                 required="required"
-                value={this.state.comments.topic}
-               /* onChange={(event) => {
-                  const topic = event.target.value;
-                  this.setState((prevState) => {
-                    let comments = Object.assign({}, prevState.comments);
-                    comments.topic = topic;
-                    return { comments };
-                  });
-                }}*/
+                value={this.state.topic}
+                onChange={(e) => {
+                    this.setState({ topic: e.target.value });
+                  }}
                 placeholder="Title"
                 style={{ width: "100%", height: "30px", resize: "none" }}
                 maxLength="50"
               ></textarea>
             </div>
-            <div className="col-md-3">
-              
-            </div>
+            <div className="col-md-3"></div>
           </div>
           <div className="row">
             <div className="col-md-9">
@@ -122,18 +65,13 @@ export default class BlockForm extends Component {
                 type="text"
                 className="inbox"
                 required="required"
-                value={this.state.comments.text}
-                /*onChange={(event) => {
-                  const text = event.target.value;
-                  this.setState((prevState) => {
-                    let comments = Object.assign({}, prevState.comments);
-                    comments.text = text;
-                    return { comments };
-                  });
-                }}*/
+                value={this.state.detail}
                 placeholder="Comment"
                 style={{ width: "100%", height: "75px", resize: "none" }}
                 maxLength="150"
+                onChange={(e) => {
+                    this.setState({ detail: e.target.value });
+                  }}
               ></textarea>
             </div>
             <div
@@ -144,9 +82,6 @@ export default class BlockForm extends Component {
                 <button
                   className="button-white"
                   style={{ width: 100 }}
-                  /*onClick={(event) => {
-                    this.handleSubmitCreate(event);
-                  }}*/
                 >
                   submit
                 </button>
@@ -156,16 +91,22 @@ export default class BlockForm extends Component {
       </div>
     );
   }
-  /*async componentDidMount() {
-    let comments = await Util.getMyComment(this.props.detail._id);
-    this.setState({ comments });
-    console.log(this.state.comments);
-  }*/
-  // console.log(window.location.search.substring(10));
-  // console.log(localStorage.getItem("token"));
-  // let data = await Util.getComment(localStorage.getItem("token"),window.location.search.substring(10));
-  // this.setState(data);
-  // console.log(data)
-  // console.log(this.state.comments)
-  // }
+  
+  /*onClick = async event => {
+    event.preventDefault();
+    let topic = this.state.topic;
+    let detail = this.state.detail;
+    let data = await Util.block(topic, detail);
+    // await console.log(data);
+    if (data.errmsg) {
+      window.alert(data.errmsg);
+    } else {
+      console.log(data);
+      history.push("/home");
+      window.location.reload();
+    }
+  };*/
+
+
+
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../component/LoginCard.css";
-//import Util from "../apis/Util";
+import Util from "../apis/Util";
 import history from "../history";
 
 export class LoginCard extends Component {
@@ -99,7 +99,7 @@ export class LoginCard extends Component {
       </div>
     );
   }
-  /*onClick = async event => {
+  onClick = async event => {
     event.preventDefault();
     let username = this.state.userName;
     let password = this.state.password;
@@ -115,7 +115,7 @@ export class LoginCard extends Component {
       history.push("/home");
       window.location.reload();
     }
-  };*/
+  };
 }
 
 export default LoginCard;
