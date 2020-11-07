@@ -16,7 +16,7 @@ const Util = {
     if (response.status == 500) return response.json();
     if (response.status == 200) return response.json();
   },
-  // getPost: async (postID) => {
+  // getPost: async () => {
   //   const URL = `http://localhost:8000/home?token=${token}`;
   //   const response = await fetch(URL, {
   //     method: "GET",
@@ -27,7 +27,6 @@ const Util = {
   // },
   // createPost: async (
   //   topic,
-  //   datail,
   // ) => {
   //   const URL = `http://localhost:8000/home?token=${token}`;
   //   const response = await fetch(URL, {
@@ -49,7 +48,6 @@ const Util = {
   // editPost: async (
   //   _id,
   //   topic,
-  //   datail,
   // ) => {
   //   const URL = `http://localhost:8000/home?token=${token}`;
   //   const response = await fetch(URL, {
