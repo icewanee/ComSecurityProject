@@ -54,7 +54,7 @@ const updatePost = () => async (req, res) => {
       throw new ErrorHandler(400, "Title is null");
     }
 
-    data = await PostModel.findByIdAndUpdate(id, { title });
+    data = await PostModel.findOneAndUpdate({creator:req.user.username,_id:id}, { title });
 
     return res.json({ success: true, data });
   } catch (error) {
@@ -69,6 +69,8 @@ const deletePost = () => async (req, res) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error);
+    return handleError(error, res);
+
   }
 };
 
