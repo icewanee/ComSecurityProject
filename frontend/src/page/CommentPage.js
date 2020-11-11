@@ -2,14 +2,10 @@ import React, { Component } from 'react'
 import CommentForm from '../component/CommentForm'
 import Comment from '../component/Comment'
 
-import BlockPage from './BlockPage';
-
 export default class CommentPage extends Component {
     constructor(props) {
         super(props)
-    
-        this.state = {
-        }
+        this.topic_id = 1
     }
     
     render() {
@@ -17,15 +13,19 @@ export default class CommentPage extends Component {
             <div className="decorate" align="center">
                 <div className="Card">
                     <div className="row">
-                        <div className="col-md-12"><Comment /></div>
+                        <div className="col-md-12"><Comment id={this.topic_id}/></div>
                     </div>
                     <div className="row">
-                        <div className="col-md-12 "><CommentForm /></div>
+                        <div className="col-md-12 "><CommentForm id={this.topic_id}/></div>
                     </div>
                 </div>
           </div>
         )
     }
+    /*async componentDidMount() {
+    
+  }*/
+
 }
 
 

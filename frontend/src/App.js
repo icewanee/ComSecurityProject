@@ -14,7 +14,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route  path="/home" component={BlockPage} />
+          <Route  path="/post" component={BlockPage} />
           <Route  path="/comment" component={CommentPage} />
           <Route component={PageNotFound} />
         </Switch>

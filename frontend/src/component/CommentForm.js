@@ -1,26 +1,19 @@
 import React, { Component } from "react";
-//import Util from "../apis/Util";
+import Util from "../apis/Util";
 
 export default class CommentForm extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
-      topic:{
-        id: 1
-      },
       comments: {
-        _id: "",
         comment: "",
-        isCommented: false,
       },
     };
-   /* this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
     this.handleSubmitCreate = this.handleSubmitCreate.bind(this);
-    this.handleChange = this.handleChange.bind(this);*/
   }
 
- /* async handleSubmitCreate(event) {
+ async handleSubmitCreate(event) {
     event.preventDefault();
     console.log(this.state.comments);
     if (!this.state.comments.topic || !this.state.comments.text) {
@@ -31,8 +24,8 @@ export default class CommentForm extends Component {
       return;
     }
     let data = await Util.createComment(
-      this.state.topic.,
-      this.state.comments.text,
+      this.props.id,
+      this.state.comments.comment,
     );
     if (data.err) {
       alert(data.err);
@@ -40,19 +33,10 @@ export default class CommentForm extends Component {
     window.location.reload();
   }
  
-  handleChange(event) {
-    const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value,
-    });
-  }*/
   render() {
     return (
       <div className="bigCard" style={{ minHeight: "100px", height: "auto" }}>
         <form
-         /* onSubmit={(event) => this.handleSubmit(event)}*/
           style={{ marginLeft: 30}}
         >
           <div className="row">
@@ -71,14 +55,14 @@ export default class CommentForm extends Component {
                 className="inbox"
                 required="required"
                 value={this.state.comments.text}
-                /*onChange={(event) => {
+                onChange={(event) => {
                   const text = event.target.value;
                   this.setState((prevState) => {
                     let comments = Object.assign({}, prevState.comments);
-                    comments.text = text;
+                    comments.comment = text;
                     return { comments };
                   });
-                }}*/
+                }}
                 placeholder="Comment"
                 style={{ width: "100%", height: "75px", resize: "none" }}
                 maxLength="150"
@@ -93,9 +77,9 @@ export default class CommentForm extends Component {
                 <button
                   className="button-white"
                   style={{ width: 100 }}
-                  /*onClick={(event) => {
+                  onClick={(event) => {
                     this.handleSubmitCreate(event);
-                  }}*/
+                  }}
                 >
                   Comment
                 </button>
@@ -106,15 +90,7 @@ export default class CommentForm extends Component {
     );
   }
   /*async componentDidMount() {
-    let comments = await Util.getMyComment(this.props.detail._id);
-    this.setState({ comments });
-    console.log(this.state.comments);
+    
   }*/
-  // console.log(window.location.search.substring(10));
-  // console.log(localStorage.getItem("token"));
-  // let data = await Util.getComment(localStorage.getItem("token"),window.location.search.substring(10));
-  // this.setState(data);
-  // console.log(data)
-  // console.log(this.state.comments)
-  // }
+
 }

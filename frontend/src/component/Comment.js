@@ -5,10 +5,6 @@ export default class Comment extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            post: {
-              id: 1,
-              topic: "hello world"
-            },
             data: [
                 {
                   id: 1,
@@ -44,23 +40,23 @@ export default class Comment extends Component {
         }
         this.handleEdit = this.handleEdit.bind(this);
     }
-    async handleEdit(event) {
+    async handleEdit(event,comment_id) {
       var detail = prompt("New comment", "");
       if (detail == null || detail == "") {
+        alert("Edit have error. Please! try again.");
         return
       }
       event.preventDefault();
       console.log(this.state.comments);
-      // let data = await Util.editComment(
-      //   this.props.detail._id, //comment_id??
-      //   this.state.post.id,
-      //   detail,
-      // );
-      // if (data.err) {
-      //   alert(data.err);
-      // } else {
-      //   alert("Post is edited.");
-      // }
+      let data = await Util.editComment(
+        comment_id,
+        detail,
+      );
+      if (data.err) {
+        alert(data.err);
+      } else {
+        alert("Post is edited.");
+      }
       window.location.reload();
     }
    
@@ -87,7 +83,7 @@ export default class Comment extends Component {
                           {(item.editable)?(
                             <div >
                               <div className="col-sm-1"> <button onClick={(event) => {
-                                this.handleEdit(event);
+                                this.handleEdit(event,item.id);
                               }}>edit</button></div>
                           
                             </div>
@@ -111,11 +107,11 @@ export default class Comment extends Component {
       </div>
         )
     }
-    /*async componentDidMount() {
-    let comments = await Util.getMyComment(this.props.post.id);
+  async componentDidMount() {
+    let comments = await Util.getComment(this.props.id);
     this.setState({ comments });
     console.log(this.state.comments);
-  }*/
+  }
 }
 
 
