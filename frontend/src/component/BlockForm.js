@@ -21,10 +21,13 @@ export default class BlockForm extends Component {
       return;
     }
     let data = await Util.createPost(this.state.comments.topic);
-    if (!data.success) {
-      alert("error");
+    if ("success" in data) {
+      if (!data.success) {
+        alert("error");
+      } else {
+        window.location.reload();
+      }
     }
-    window.location.reload();
   }
 
   render() {

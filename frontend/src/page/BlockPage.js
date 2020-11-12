@@ -38,7 +38,7 @@ export default class BlockPage extends Component {
     event.preventDefault();
     console.log(detail);
     let data = await Util.editPost(id, detail);
-    if (!data.success) {
+    if (data.status) {
       alert("error");
     } else {
       alert("Post is edited.");
@@ -195,6 +195,7 @@ export default class BlockPage extends Component {
     );
   }
   async componentDidMount() {
+    console.log("CDM");
     let comments = await Util.getPost();
     this.setState({ comments });
     localStorage.setItem("post_id", "");

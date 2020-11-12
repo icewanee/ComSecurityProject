@@ -17,12 +17,14 @@ const Util = {
     if (response.status === 200) return response.json();
   },
   getPost: async () => {
-    const URL = `http://localhost:8000/api/auth/post?token=${localStorage.getItem(
-      "token"
-    )}`;
+    const URL = `http://localhost:8000/api/auth/post`;
     const response = await fetch(URL, {
       method: "GET",
       mode: "cors",
+      cache: "no-cache",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     });
     if (response.status === 404) return { error: true };
     if (response.status === 200) return response.json();
