@@ -114,7 +114,7 @@ export class LoginCard extends Component {
       this.setState({ password: "" });
     } else {
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", username);
+      localStorage.setItem("user", data.user.username);
       localStorage.setItem("role", data.user.role);
 
       console.log(data);

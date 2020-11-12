@@ -42,7 +42,7 @@ export default class text extends Component {
   }
   async handleEdit(event, text_id) {
     var detail = prompt("New text", "");
-    if (detail == null || detail == "") {
+    if (detail == null || detail === "") {
       alert("Edit have error. Please! try again.");
       return;
     }
@@ -80,10 +80,9 @@ export default class text extends Component {
                       <td style={{ fontFamily: "Courier New" }}>
                         <div className="row">
                           <div className="col-md-10">text : {item.text}</div>
-                          {item.creator ? (
+                          {item.creator === localStorage.getItem("user")? (
                             <div>
                               <div className="col-sm-1">
-                                {" "}
                                 <button
                                   onClick={(event) => {
                                     this.handleEdit(event, item.id);
