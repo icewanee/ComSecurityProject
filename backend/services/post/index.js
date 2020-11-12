@@ -69,6 +69,7 @@ const deletePost = () => async (req, res) => {
     return res.json({ success: true });
   } catch (error) {
     console.log(error);
+    return res.json({ success: false });
   }
 };
 
