@@ -4,7 +4,7 @@ import Util from "../apis/Util";
 export default class CommentForm extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       comments: {
         comment: "",
@@ -13,32 +13,25 @@ export default class CommentForm extends Component {
     this.handleSubmitCreate = this.handleSubmitCreate.bind(this);
   }
 
- async handleSubmitCreate(event) {
+  async handleSubmitCreate(event) {
     event.preventDefault();
-    console.log(this.state.comments);
-    if (!this.state.comments.topic || !this.state.comments.text) {
-      alert("Please fill every field");
-      return;
-    } else if (!this.state.comments.rating) {
-      alert("Please input rating");
-      return;
-    }
     let data = await Util.createComment(
-      this.props.id,
-      this.state.comments.comment,
+      localStorage.getItem("post_id"),
+      this.state.comments.comment
     );
-    if (data.err) {
-      alert(data.err);
+    if ("success" in data) {
+      if (!data.success) {
+        alert("error");
+      } else {
+        window.location.reload();
+      }
     }
-    window.location.reload();
   }
- 
+
   render() {
     return (
       <div className="bigCard" style={{ minHeight: "100px", height: "auto" }}>
-        <form
-          style={{ marginLeft: 30}}
-        >
+        <form style={{ marginLeft: 30 }}>
           <div className="row">
             <div className="col-md-9">
               <div
@@ -74,15 +67,15 @@ export default class CommentForm extends Component {
               style={{ paddingTop: "15px" }}
             >
               <br />
-                <button
-                  className="button-white"
-                  style={{ width: 100 }}
-                  onClick={(event) => {
-                    this.handleSubmitCreate(event);
-                  }}
-                >
-                  Comment
-                </button>
+              <button
+                className="button-white"
+                style={{ width: 100 }}
+                onClick={(event) => {
+                  this.handleSubmitCreate(event);
+                }}
+              >
+                Comment
+              </button>
             </div>
           </div>
         </form>
@@ -92,5 +85,4 @@ export default class CommentForm extends Component {
   /*async componentDidMount() {
     
   }*/
-
 }

@@ -29,7 +29,7 @@ const Util = {
     if (response.status === 404) return { error: true };
     if (response.status === 200) return response.json();
   },
-  createPost: async (topic) => {
+  createPost: async (title) => {
     const URL = `http://localhost:8000/api/auth/post?token=${localStorage.getItem(
       "token"
     )}`;
@@ -38,90 +38,92 @@ const Util = {
       mode: "cors",
       cache: "no-cache",
       headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        topic,
+        title,
       }),
     });
     if (response.status === 400) return { error: true };
     if (response.status === 201) return response.json();
   },
-  editPost: async (_id, topic) => {
-    const URL = `http://localhost:8000/api/auth/post?id=${_id}&token=${localStorage.getItem(
-      "token"
-    )}`;
+  editPost: async (_id, title) => {
+    const URL = `http://localhost:8000/api/auth/post/${_id}`;
     const response = await fetch(URL, {
       method: "PUT",
       mode: "cors",
       cache: "no-cache",
       headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        topic,
+        title,
       }),
     });
     if (response.status === 400) return { error: true };
     if (response.status === 201) return response.json();
   },
   deletePost: async (postID) => {
-    const URL = `http://localhost:8000/api/auth/post?id=${postID}&token=${localStorage.getItem(
-      "token"
-    )}`;
+    const URL = `http://localhost:8000/api/auth/post/${postID}`;
     const response = await fetch(URL, {
       method: "delete",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
       mode: "cors",
     });
     if (response.status === 400) return { error: true };
-    if (response.status === 201) return { error: false };
+    if (response.status === 200) return response.json();
   },
-  createComment: async (postID, text) => {
-    const URL = `http://localhost:8000/api/auth/comment?token=${localStorage.getItem(
-      "token"
-    )}`;
+  createComment: async (post_id, text) => {
+    const URL = `http://localhost:8000/api/auth/comment`;
     console.log(URL);
     const response = await fetch(URL, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
       headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         text,
-        postID,
+        post_id,
       }),
     });
 
-    if (response.status === 400) return response.json();
-    if (response.status === 201) return { err: false };
+    if (response.status === 201) return response.json();
+    if (response.status === 400) return { err: false };
   },
-  editComment: async (commentID, text) => {
-    const URL = `http://localhost:8000/api/auth/comment?token=${localStorage.getItem(
-      "token"
-    )}`;
+  editComment: async (id, text) => {
+    const URL = `http://localhost:8000/api/auth/comment`;
     const response = await fetch(URL, {
       method: "PUT",
       mode: "cors",
       cache: "no-cache",
       headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         text,
-        commentID,
+        id,
       }),
     });
-    if (response.status === 400) return response.json();
-    if (response.status === 201) return { err: false };
+    if (response.status === 200) return response.json();
+    else return { err: false };
   },
   getComment: async (postID) => {
-    const URL = `http://localhost:8000/api/auth/comment?post_id=${postID}&token=${localStorage.getItem(
-      "token"
-    )}`;
+    const URL = `http://localhost:8000/api/auth/comment/${postID}`;
     const response = await fetch(URL, {
       method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
       mode: "cors",
     });
     if (response.status === 404) return { error: true };

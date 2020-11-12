@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import queryString from "query-string";
 import Util from "../apis/Util";
 
 export default class text extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      topic: "",
       data: [
         {
           id: 1,
@@ -48,21 +50,20 @@ export default class text extends Component {
     }
     event.preventDefault();
     console.log(this.state.texts);
-    let data = await Util.edittext(text_id, detail);
-    if (!data.success) {
-      alert("error");
-    } else {
-      alert("Post is edited.");
+    let data = await Util.editComment(text_id, detail);
+    if ("success" in data) {
+      if (!data.success) {
+        alert("error");
+      } else {
+        window.location.reload();
+      }
     }
-    window.location.reload();
   }
 
   render() {
     return (
       <div align="center">
-        <h3 className="justify-content-center">
-          Topic: {this.state.post.topic}
-        </h3>
+        <h3 className="justify-content-center">Topic: {this.state.topic}</h3>
         <div className="Card">
           <div className="row">
             <div className="col-md-12">
@@ -70,7 +71,7 @@ export default class text extends Component {
                 <thead>
                   <tr>
                     <th scope="col" style={{ fontFamily: "Courier New" }}>
-                      text
+                      Comment
                     </th>
                   </tr>
                 </thead>
@@ -80,12 +81,12 @@ export default class text extends Component {
                       <td style={{ fontFamily: "Courier New" }}>
                         <div className="row">
                           <div className="col-md-10">text : {item.text}</div>
-                          {item.creator === localStorage.getItem("user")? (
+                          {item.creator === localStorage.getItem("user") ? (
                             <div>
                               <div className="col-sm-1">
                                 <button
                                   onClick={(event) => {
-                                    this.handleEdit(event, item.id);
+                                    this.handleEdit(event, item._id);
                                   }}
                                 >
                                   edit
@@ -108,8 +109,12 @@ export default class text extends Component {
     );
   }
   async componentDidMount() {
-    let texts = await Util.gettext(this.props.id);
-    this.setState({ texts });
-    console.log(this.state.texts);
+    let texts = await Util.getComment(localStorage.getItem("post_id"));
+    let query = queryString.parse(document.location.search);
+    this.setState({
+      data: texts.data,
+      topic: query.title,
+    });
+    console.log(this.state.data);
   }
 }

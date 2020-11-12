@@ -11,15 +11,12 @@ import CommentPage from "./page/CommentPage";
 function App() {
   return (
     <Router history={history}>
-      <div>
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
-          {/* {() */}
-          <Route path="/post" component={BlockPage} />
-          <Route path="/comment" component={CommentPage} />
-          <Route component={PageNotFound} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/post" component={BlockPage} />
+        <Route path="/comment" component={CommentPage} />
+        <Route exact path="/" component={LoginPage} />
+        <Route component={PageNotFound} />
+      </Switch>
     </Router>
   );
 }

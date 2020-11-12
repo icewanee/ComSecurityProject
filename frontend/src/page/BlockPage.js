@@ -38,27 +38,29 @@ export default class BlockPage extends Component {
     event.preventDefault();
     console.log(detail);
     let data = await Util.editPost(id, detail);
-    if (data.status) {
-      alert("error");
-    } else {
-      alert("Post is edited.");
+    if ("success" in data) {
+      if (!data.success) {
+        alert("error");
+      } else {
+        window.location.reload();
+      }
     }
-    window.location.reload();
   }
   async handleDelete(event, id) {
     event.preventDefault();
     console.log("delete");
     let data = await Util.deletePost(id);
-    if (!data.success) {
-      alert("error");
-    } else {
-      alert("Post is delete.");
+    if ("success" in data) {
+      if (!data.success) {
+        alert("error");
+      } else {
+        window.location.reload();
+      }
     }
-    window.location.reload();
   }
-  async handleViewComment(event, id) {
+  async handleViewComment(event, id, title) {
     localStorage.setItem("post_id", id);
-    history.push("/comment");
+    history.push(`/comment?title=${title}`);
   }
 
   render() {
@@ -97,7 +99,11 @@ export default class BlockPage extends Component {
                             <br />
                             <button
                               onClick={(event) => {
-                                this.handleViewComment(event, item.id);
+                                this.handleViewComment(
+                                  event,
+                                  item._id,
+                                  item.title
+                                );
                               }}
                             >
                               view comment
@@ -105,7 +111,7 @@ export default class BlockPage extends Component {
                             {item.creator === localStorage.getItem("user") ? (
                               <button
                                 onClick={(event) => {
-                                  this.handleEdit(event, item.id);
+                                  this.handleEdit(event, item._id);
                                 }}
                               >
                                 edit
@@ -162,21 +168,25 @@ export default class BlockPage extends Component {
                           <br />
                           <button
                             onClick={(event) => {
-                              this.handleViewComment(event, item.id);
+                              this.handleViewComment(
+                                event,
+                                item._id,
+                                item.title
+                              );
                             }}
                           >
                             view comment
                           </button>
                           <button
                             onClick={(event) => {
-                              this.handleEdit(event, item.id);
+                              this.handleEdit(event, item._id);
                             }}
                           >
                             edit
                           </button>
                           <button
                             onClick={(event) => {
-                              this.handleDelete(event, item.id);
+                              this.handleDelete(event, item._id);
                             }}
                           >
                             delete
@@ -197,7 +207,7 @@ export default class BlockPage extends Component {
   async componentDidMount() {
     console.log("CDM");
     let comments = await Util.getPost();
-    this.setState({ comments });
+    this.setState({ data: comments.data });
     localStorage.setItem("post_id", "");
     console.log(this.state.data);
   }

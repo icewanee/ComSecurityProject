@@ -29,7 +29,7 @@ const login = () => async (req, res) => {
   const _user = await getUserByUsername(username);
 
   if (_user) {
-    if (bcryptUtils.comparePassword(password, _user.password)) {
+    if (await bcryptUtils.comparePassword(password, _user.password)) {
       const _userInfo = await getUserWithoutPassword(_user._id);
 
       const token = jwt.sign(_userInfo, process.env.SECRET, {

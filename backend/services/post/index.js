@@ -54,9 +54,16 @@ const updatePost = () => async (req, res) => {
       throw new ErrorHandler(400, "Title is null");
     }
 
-    data = await PostModel.findOneAndUpdate({creator:req.user.username,_id:id}, { title });
+    if (req.user.role == "modulator") {
+      data = await PostModel.findOneAndUpdate({ _id: id }, { title });
+    } else {
+      data = await PostModel.findOneAndUpdate(
+        { creator: req.user.username, _id: id },
+        { title }
+      );
+    }
 
-    return res.json({ success: true, data });
+    return res.status("201").json({ success: true, data });
   } catch (error) {
     return handleError(error, res);
   }
