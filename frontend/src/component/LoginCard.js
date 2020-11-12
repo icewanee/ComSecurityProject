@@ -7,7 +7,7 @@ export class LoginCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
+      username: "",
       password: "",
     };
   }
@@ -30,7 +30,10 @@ export class LoginCard extends Component {
           style={{ width: 750, border: "thick solid black" }}
         >
           <br />
-          <form className="needs-validation" onSubmit={event => this.onClickLogin(event)}>
+          <form
+            className="needs-validation"
+            onSubmit={(event) => this.onClickLogin(event)}
+          >
             <div className="row">
               <div className="col-md-12 ">
                 <h2
@@ -50,11 +53,11 @@ export class LoginCard extends Component {
                   <br />
                   <input
                     type="text"
-                    id="userName"
+                    id="username"
                     className="field"
                     style={{ width: 250 }}
                     onChange={(e) => {
-                      this.setState({ userName: e.target.value });
+                      this.setState({ username: e.target.value });
                     }}
                     required
                   />
@@ -102,43 +105,23 @@ export class LoginCard extends Component {
 
   onClickLogin = async (event) => {
     event.preventDefault();
-    let userName = this.state.userName;
+    let username = this.state.username;
     let password = this.state.password;
-    let data = await Util.login(userName, password);
-    // await console.log(data);
-    if (data.errmsg) {
-      window.alert(data.errmsg);
+    let data = await Util.login(username, password);
+    console.log(data);
+    if (!data.success) {
+      window.alert(data.message);
       this.setState({ password: "" });
     } else {
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem(
-        "role",
-        data.user.role
-      );
-      
+      localStorage.setItem("user", username);
+      localStorage.setItem("role", data.user.role);
+
       console.log(data);
       history.push("/post");
       window.location.reload();
     }
   };
-  // onClick = async event => {
-  //   event.preventDefault();
-  //   let username = this.state.userName;
-  //   let password = this.state.password;
-  //   let data = await Util.login(username, password);
-  //   // await console.log(data);
-  //   if (data.errmsg) {
-  //     window.alert(data.errmsg);
-  //     this.setState({ password: "" });
-  //   } else {
-  //     localStorage.setItem("token", data.token);
-  //     localStorage.setItem("user", JSON.stringify(data.user));
-  //     console.log(data);
-  //     history.push("/post");
-  //     window.location.reload();
-  //   }
-  // };
 }
 
 export default LoginCard;

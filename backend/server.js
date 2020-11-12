@@ -5,7 +5,7 @@ const passport = require("passport");
 const routes = require("./routes/routes");
 const authRoutes = require("./routes/secure_routes");
 const passportPlugin = require("./plugins/passport");
-
+const cors = require("cors")
 require("dotenv").config();
 
 const port = 8000;
@@ -13,7 +13,7 @@ const port = 8000;
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(cors())
 // connect db
 mongoose.connect(process.env.MONGO_DB, {
   useNewUrlParser: true,
