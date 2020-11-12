@@ -117,7 +117,6 @@ export class LoginCard extends Component {
       localStorage.setItem("user", data.user.username);
       localStorage.setItem("role", data.user.role);
 
-      console.log(data);
       history.push("/post");
       window.location.reload();
     }

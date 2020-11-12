@@ -17,11 +17,15 @@ export default class CommentPage extends Component {
               <Comment id={this.topic_id} />
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-12 ">
-              <CommentForm id={this.topic_id} />
+          {localStorage.getItem("role") === "user" ? (
+            <div className="row">
+              <div className="col-md-12 ">
+                <CommentForm id={this.topic_id} />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     );

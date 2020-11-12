@@ -16,7 +16,7 @@ export default class BlockForm extends Component {
   async handleSubmitCreate(event) {
     event.preventDefault();
     console.log(this.state.comments);
-    if (!this.state.comments.topic || !this.state.comments.text) {
+    if (!this.state.comments.topic) {
       alert("Please fill every field");
       return;
     }

@@ -57,7 +57,7 @@ export default class BlockPage extends Component {
     window.location.reload();
   }
   async handleViewComment(event, id) {
-    localStorage.setItem("post_id") = id;
+    localStorage.setItem("post_id", id);
     history.push("/comment");
   }
 
@@ -196,8 +196,8 @@ export default class BlockPage extends Component {
   }
   async componentDidMount() {
     let comments = await Util.getPost();
-    this.getState({ comments });
-    localStorage.getItem("post_id") = "";
+    this.setState({ comments });
+    localStorage.setItem("post_id", "");
     console.log(this.state.data);
   }
 }
