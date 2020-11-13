@@ -13,7 +13,9 @@ const port = 8000;
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000'
+})) //specific domain เพราะว่าทุกคนจะยิงเข้ามาได้ แต่ทำยังไงไม่รู้ 
 // connect db
 mongoose.connect(process.env.MONGO_DB, {
   useNewUrlParser: true,

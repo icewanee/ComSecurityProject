@@ -18,7 +18,6 @@ export default class text extends Component {
       alert("Edit have error. Please! try again.");
       return;
     }
-    console.log(this.state.texts);
     let data = await Util.editComment(text_id, detail);
     if ("success" in data) {
       if (!data.success) {
@@ -82,6 +81,5 @@ export default class text extends Component {
       data: texts.data,
       topic: query.title,
     });
-    console.log(this.state.data);
   }
 }

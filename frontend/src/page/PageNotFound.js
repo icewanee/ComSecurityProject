@@ -16,4 +16,7 @@ export default class PageNotFound extends Component {
       </div>
     );
   }
+  async componentDidUpdate() {
+    window.location.reload();
+  }
 }
