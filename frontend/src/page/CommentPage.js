@@ -10,7 +10,10 @@ export default class CommentPage extends Component {
   }
   back(event){
     event.preventDefault();
-    history.push("/post");
+    history.push({
+      pathname: '/post',
+      search: '',
+    });
     window.location.reload();
   }
 
