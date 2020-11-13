@@ -5,6 +5,7 @@ const passport = require("passport");
 const routes = require("./routes/routes");
 const authRoutes = require("./routes/secure_routes");
 const passportPlugin = require("./plugins/passport");
+const frameguard = require('frameguard')
 const cors = require("cors")
 require("dotenv").config();
 
@@ -15,7 +16,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
   origin: 'http://localhost:3000'
-})) //specific domain เพราะว่าทุกคนจะยิงเข้ามาได้ แต่ทำยังไงไม่รู้ 
+})) 
+
+app.use(frameguard({ action: 'SAMEORIGIN' }))
 // connect db
 mongoose.connect(process.env.MONGO_DB, {
   useNewUrlParser: true,
