@@ -36,7 +36,7 @@ export default class text extends Component {
         <div className="Card">
           <div className="row">
             <div className="col-md-12">
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col" style={{ fontFamily: "Courier New" }}>

@@ -19,9 +19,9 @@ class App extends Component {
   return (
     <Router history={history}>
       <Switch>
+      <Route exact path="/" component={LoginPage} />
         {(this.loggedIn()) &&<Route path="/post" component={BlockPage} />}
         {(this.loggedIn())&&<Route path="/comment" component={CommentPage} /> }
-        {(!this.loggedIn()) && <Route exact path="/" component={LoginPage} />}
          <Route component={PageNotFound} />
       </Switch>
     </Router>

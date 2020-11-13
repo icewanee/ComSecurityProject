@@ -47,8 +47,12 @@ export default class BlockPage extends Component {
     }
   }
   async handleViewComment(event, id, title) {
+    event.preventDefault();
     localStorage.setItem("post_id", id);
-    history.push(`/comment?title=${title}`);
+    history.push({
+      pathname: '/comment',
+      search: '?title='+title,
+    });
   }
 
   render() {
@@ -68,9 +72,9 @@ export default class BlockPage extends Component {
               </div>
               <br />
             </div>
-            <div className="row">
+            <div className="row" key="1">
               <div className="col-md-12">
-                <table class="table">
+                <table className="table">
                   <thead>
                     <tr>
                       <th scope="col" style={{ fontFamily: "Courier New" }}>
@@ -82,7 +86,7 @@ export default class BlockPage extends Component {
                     {this.state.data.map((item) => (
                       <tr>
                         <td style={{ fontFamily: "Courier New" }}>
-                          <div>
+                          <div key={item.title}>
                             title : {item.title}
                             <br />
                             <button
@@ -115,7 +119,7 @@ export default class BlockPage extends Component {
                 </table>
               </div>
             </div>
-            <div className="row">
+            <div className="row" key="2">
               <div className="col-md-12">
                 <BlockForm />
               </div>
@@ -139,7 +143,7 @@ export default class BlockPage extends Component {
           </div>
           <div className="row">
             <div className="col-md-12">
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col" style={{ fontFamily: "Courier New" }}>
@@ -193,7 +197,6 @@ export default class BlockPage extends Component {
     );
   }
   async componentDidMount() {
-    console.log("CDM");
     let comments = await Util.getPost();
     this.setState({ data: comments.data });
     localStorage.setItem("post_id", "");

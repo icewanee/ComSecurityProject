@@ -121,6 +121,15 @@ export class LoginCard extends Component {
       window.location.reload();
     }
   };
+
+  async componentDidMount() {
+    localStorage.setItem("token", "");
+    localStorage.setItem("user", "");
+    localStorage.setItem("role", "");
+    localStorage.setItem("post_id","");
+    this.setState({username: "",
+    password: "",})
+  }
 }
 
 export default LoginCard;

@@ -14,7 +14,7 @@ export default class CommentPage extends Component {
         <div className="Card">
           <div className="row">
             <div className="col-md-12">
-              <Comment id={this.topic_id} />
+              <Comment id={this.topic_id}/>
             </div>
           </div>
           {localStorage.getItem("role") === "user" ? (
