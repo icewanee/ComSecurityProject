@@ -53,6 +53,7 @@ export default class BlockPage extends Component {
       pathname: '/comment',
       search: '?title='+title,
     });
+    window.location.reload();
   }
 
   render() {
@@ -84,9 +85,9 @@ export default class BlockPage extends Component {
                   </thead>
                   <tbody>
                     {this.state.data.map((item) => (
-                      <tr>
+                      <tr key={item._id}>
                         <td style={{ fontFamily: "Courier New" }}>
-                          <div key={item.title}>
+                          <div >
                             title : {item.title}
                             <br />
                             <button
@@ -153,7 +154,7 @@ export default class BlockPage extends Component {
                 </thead>
                 <tbody>
                   {this.state.data.map((item) => (
-                    <tr>
+                    <tr key={item.title}>
                       <td style={{ fontFamily: "Courier New" }}>
                         <div>
                           title : {item.title}

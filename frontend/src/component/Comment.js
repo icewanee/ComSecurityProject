@@ -6,18 +6,18 @@ export default class text extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic: "",
-      data: [ ],
+      data: [],
+      topic:"",
     };
     this.handleEdit = this.handleEdit.bind(this);
   }
   async handleEdit(event, text_id) {
+    event.preventDefault();
     var detail = prompt("New text", "");
     if (detail == null || detail === "") {
       alert("Edit have error. Please! try again.");
       return;
     }
-    event.preventDefault();
     console.log(this.state.texts);
     let data = await Util.editComment(text_id, detail);
     if ("success" in data) {
@@ -46,11 +46,11 @@ export default class text extends Component {
                 </thead>
                 <tbody>
                   {this.state.data.map((item) => (
-                    <tr>
+                    <tr key={item._id}>
                       <td style={{ fontFamily: "Courier New" }}>
                         <div className="row">
                           <div className="col-md-10">text : {item.text}</div>
-                          {item.creator === localStorage.getItem("user") ? (
+                          {item.creator === localStorage.getItem("user") && (
                             <div>
                               <div className="col-sm-1">
                                 <button
@@ -62,8 +62,6 @@ export default class text extends Component {
                                 </button>
                               </div>
                             </div>
-                          ) : (
-                            <div></div>
                           )}
                         </div>
                       </td>

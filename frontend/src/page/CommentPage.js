@@ -14,13 +14,13 @@ export default class CommentPage extends Component {
         <div className="Card">
           <div className="row">
             <div className="col-md-12">
-              <Comment id={this.topic_id}/>
+              <Comment/>
             </div>
           </div>
           {localStorage.getItem("role") === "user" ? (
             <div className="row">
               <div className="col-md-12 ">
-                <CommentForm id={this.topic_id} />
+                <CommentForm />
               </div>
             </div>
           ) : (
@@ -29,8 +29,5 @@ export default class CommentPage extends Component {
         </div>
       </div>
     );
-  }
-  async componentDidMount() {
-    this.topic_id = localStorage.getItem("post_id");
   }
 }

@@ -1,5 +1,3 @@
-import history from "../history";
-
 const Util = {
   login: async (username, password) => {
     const URL = "http://localhost:8000/api/login";
