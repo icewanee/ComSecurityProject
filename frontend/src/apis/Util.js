@@ -30,9 +30,7 @@ const Util = {
     if (response.status === 200) return response.json();
   },
   createPost: async (title) => {
-    const URL = `http://localhost:8000/api/auth/post?token=${localStorage.getItem(
-      "token"
-    )}`;
+    const URL = `http://localhost:8000/api/auth/post`;
     const response = await fetch(URL, {
       method: "POST",
       mode: "cors",

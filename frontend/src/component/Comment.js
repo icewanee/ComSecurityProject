@@ -7,38 +7,7 @@ export default class text extends Component {
     super(props);
     this.state = {
       topic: "",
-      data: [
-        {
-          id: 1,
-          text: "www.hello.ewwr.com",
-          creator: 0,
-        },
-        {
-          id: 2,
-          text: "www.hello.erer.com",
-          creator: 1,
-        },
-        {
-          id: 3,
-          text: "www.hello.dfss.com",
-          creator: 0,
-        },
-        {
-          id: 4,
-          text: "www.hello.oio.com",
-          creator: 0,
-        },
-        {
-          id: 5,
-          text: "www.hello.dfdf.com",
-          creator: 0,
-        },
-        {
-          id: 6,
-          text: "www.hello.iopo.com",
-          creator: 1,
-        },
-      ],
+      data: [ ],
     };
     this.handleEdit = this.handleEdit.bind(this);
   }

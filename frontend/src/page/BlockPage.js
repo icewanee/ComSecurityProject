@@ -8,23 +8,7 @@ export default class BlockPage extends Component {
     super(props);
 
     this.state = {
-      data: [
-        {
-          id: 1,
-          creator: "user",
-          title: "www.hello.ewwr.com",
-        },
-        {
-          id: 2,
-          creator: "user",
-          title: "www.hello.erer.com",
-        },
-        {
-          id: 3,
-          creator: "user",
-          title: "www.hello.dfss.com",
-        },
-      ],
+      data: [ ],
     };
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -48,6 +32,10 @@ export default class BlockPage extends Component {
   }
   async handleDelete(event, id) {
     event.preventDefault();
+    var con = window.confirm("Do you sure to delete this message");
+    if(!con) {
+      return 
+    }
     console.log("delete");
     let data = await Util.deletePost(id);
     if ("success" in data) {
@@ -209,6 +197,5 @@ export default class BlockPage extends Component {
     let comments = await Util.getPost();
     this.setState({ data: comments.data });
     localStorage.setItem("post_id", "");
-    console.log(this.state.data);
   }
 }
