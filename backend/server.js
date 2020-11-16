@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_DB, {
   useUnifiedTopology: true,
 });
 mongoose.connection.on("error", (err) => {
-  logError(err);
+  console.log(err);
 });
 mongoose.connection.on("connected", () => {
   console.log("Connected");
