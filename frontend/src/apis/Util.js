@@ -7,6 +7,7 @@ const Util = {
       cache: "no-cache",
       headers: {
         "Content-Type": "application/json",
+        "X-Frame-Options": "sameorigin",
       },
       body: JSON.stringify({ username, password }),
     });
@@ -21,7 +22,9 @@ const Util = {
       mode: "cors",
       cache: "no-cache",
       headers: {
+        "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
+        "X-Frame-Options": "sameorigin",
       },
     });
     if (response.status === 404) return { error: true };
@@ -36,6 +39,7 @@ const Util = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
+        "X-Frame-Options": "sameorigin",
       },
       body: JSON.stringify({
         title,
@@ -53,6 +57,7 @@ const Util = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
+        "X-Frame-Options": "sameorigin",
       },
       body: JSON.stringify({
         title,
@@ -68,6 +73,7 @@ const Util = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
+        "X-Frame-Options": "sameorigin",
       },
       mode: "cors",
     });
@@ -84,6 +90,7 @@ const Util = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
+        "X-Frame-Options": "sameorigin",
       },
       body: JSON.stringify({
         text,
@@ -103,6 +110,7 @@ const Util = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
+        "X-Frame-Options": "sameorigin",
       },
       body: JSON.stringify({
         text,
@@ -119,6 +127,7 @@ const Util = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
+        "X-Frame-Options": "sameorigin",
       },
       mode: "cors",
     });

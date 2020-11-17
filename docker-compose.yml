@@ -1,6 +1,6 @@
-version: '3'
-services:  
-  frontend:    
+version: "3"
+services:
+  frontend:
     build: ./frontend
     image: frontend
     links:
@@ -17,11 +17,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      MONGO_DB: mongodb://test:test123@compsecproj.mj5pt.mongodb.net
-      SECRET: NodeJsApi
+      MONGO_DB: ${MONGO_DB}
+      SECRET: ${SECRET}
   mongo:
     image: mongo
     ports:
       - "27107:27107"
-  
-
