@@ -7,6 +7,7 @@ const authRoutes = require("./routes/secure_routes");
 const passportPlugin = require("./plugins/passport");
 const frameguard = require("frameguard");
 const cors = require("cors");
+const helmet = require("helmet");
 require("dotenv").config();
 
 const port = 8000;
@@ -23,11 +24,20 @@ app.use(
 app.use(function (req, res, next) {
   res.header(
     "Content-Security-Policy",
-    "default-src 'self';script-src 'self';object-src 'none';img-src 'self';media-src 'self';frame-src 'none';font-src 'self' data:;connect-src 'self';style-src 'self'"
+    "script-src 'self';object-src 'none';img-src 'self';media-src 'self';frame-src 'none';font-src 'self' data:;connect-src 'self';style-src 'self'"
   );
   next();
 });
 
+app.set('x-powered-by', false);
+
+app.use(function (req, res, next) {
+  res.removeHeader("X-Powered-By");
+  next();
+});
+
+
+app.use(helmet.hidePoweredBy())
 app.use(frameguard({ action: "SAMEORIGIN" }));
 // connect db
 mongoose.connect(process.env.MONGO_DB, {

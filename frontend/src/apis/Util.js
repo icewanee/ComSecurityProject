@@ -8,6 +8,7 @@ const Util = {
       headers: {
         "Content-Type": "application/json",
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
       body: JSON.stringify({ username, password }),
     });
@@ -25,6 +26,7 @@ const Util = {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
     });
     if (response.status === 404) return { error: true };
@@ -40,6 +42,7 @@ const Util = {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
       body: JSON.stringify({
         title,
@@ -58,6 +61,7 @@ const Util = {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
       body: JSON.stringify({
         title,
@@ -70,10 +74,12 @@ const Util = {
     const URL = `http://localhost:8000/api/auth/post/${postID}`;
     const response = await fetch(URL, {
       method: "delete",
+      cache: "no-cache",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
       mode: "cors",
     });
@@ -91,6 +97,7 @@ const Util = {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
       body: JSON.stringify({
         text,
@@ -111,6 +118,7 @@ const Util = {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
       body: JSON.stringify({
         text,
@@ -124,10 +132,12 @@ const Util = {
     const URL = `http://localhost:8000/api/auth/comment/${postID}`;
     const response = await fetch(URL, {
       method: "GET",
+      cache: "no-cache",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
         "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "default-src 'self';",
       },
       mode: "cors",
     });
